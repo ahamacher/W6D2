@@ -115,7 +115,7 @@ eval("const Board = __webpack_require__(/*! ./board */ \"./src/board.js\");\ncon
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const View = __webpack_require__(/*! ./ttt-view.js */ \"./src/ttt-view.js\")\nconst Game = __webpack_require__(/*! ./game.js */ \"./src/game.js\")\n\n  $(() => {\n    const $gameBoard = $('.ttt')\n    const game = new Game();\n    const view = new View(game, $gameBoard);\n  });\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const View = __webpack_require__(/*! ./ttt-view.js */ \"./src/ttt-view.js\")\nconst Game = __webpack_require__(/*! ./game.js */ \"./src/game.js\")\n\n  $(() => {\n    const $gameBoard = $('.ttt')\n    const game = new Game();\n    const view = new View(game, $gameBoard);\n    \n  });\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -137,7 +137,7 @@ eval("\nconst MoveError = function (msg) { this.msg = msg; };\n\n// MoveError re
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("class View {\n  constructor(game, $el) {\n    this.game = game;\n    this.$el = $el;\n    this.setupBoard();\n    this.bindEvents();\n  }\n\n  bindEvents() {\n    this.$el.on(\"click\", \"li\", ( event => {\n      const $square = $(event.target);\n      this.makeMove($square);\n    }))\n  }\n\n  makeMove($square) {\n    $square.removeClass('grey');\n    $square.addClass('white');\n    \n    $square.append(this.game.currentPlayer)\n  }\n\n  setupBoard() {\n    //create new html elements w/ jquery\n    const $grid = $('<ul>');\n    $grid.addClass('grid')\n    \n   \n    this.$el.append($grid);\n\n    for (let i = 0; i < 9; i++) {\n      let $li = $('<li>');\n      $grid.append($li);\n      $li.addClass('square')\n      $li.addClass('grey')\n    }\n\n  }\n  \n}\n\nmodule.exports = View;\n\n\n//# sourceURL=webpack:///./src/ttt-view.js?");
+eval("class View {\n  constructor(game, $el) {\n    this.game = game;\n    this.$el = $el;\n    this.setupBoard();\n    this.bindEvents();\n  }\n\n  bindEvents() {\n    this.$el.on(\"click\", \"li\", ( event => {\n      const $square = $(event.target);\n      this.makeMove($square);\n    }))\n  }\n\n  makeMove($square) {\n    if ($square.hasClass('grey')){\n      $square.removeClass('grey');\n      $square.addClass('white');\n      $square.append(this.game.currentPlayer);\n      $square.addClass(this.game.currentPlayer);\n      \n      this.game.playMove($square.data(\"pos\"));\n\n      if (this.game.winner() != null) {\n        this.game.swapTurn();\n        setTimeout(() => alert (`${this.game.currentPlayer} wins!`), 0);\n        this.$el.off('click', 'li');\n      }\n      \n    } else {\n      alert('Invalid Move, you FOOL!')\n    }\n  }\n\n  setupBoard() {\n    //create new html elements w/ jquery\n    const $grid = $('<ul>');\n    $grid.addClass('grid')\n    \n   \n    this.$el.append($grid);\n    let positions = this.makePositions()\n    window.console.log(positions);\n\n    for (let i = 0; i < 9; i++) {\n      let $li = $('<li>');\n      $grid.append($li);\n      $li.addClass('square');\n      $li.addClass('grey');\n      $li.data(\"pos\", positions[i]);\n    }\n\n  }\n\n  makePositions() {\n    const grid = [];\n\n    for (let i = 0; i < 3; i++) {\n      for (let j = 0; j < 3; j++) {\n        grid.push([i,j]);\n      }\n    }\n\n    return grid;\n  }\n  \n}\n\nmodule.exports = View;\n\n\n//# sourceURL=webpack:///./src/ttt-view.js?");
 
 /***/ })
 
