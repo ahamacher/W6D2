@@ -1,0 +1,24 @@
+/* PHASE 9: Forms */
+.content-main .thumb{
+  float: left;
+}
+
+.content-main form{
+  float: left;
+  display: inline;
+  background: lightgray;
+}
+
+.submit{
+  display: inline-block;
+  padding: 10px 20px;
+  background: rgb(35, 187, 21);
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+  box-shadow: 0px 3px darkgreen;
+}
+
+.content-main form a{
+  font-weight: bold;
+}
