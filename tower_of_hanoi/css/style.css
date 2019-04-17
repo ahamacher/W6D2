@@ -1,0 +1,58 @@
+.toh {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: green;
+  width: 200px;
+  height: 100px;
+  margin: 10px;
+  padding: 0;
+  list-style-type: none;
+}
+
+li {
+  list-style: none;
+  margin: 5px 0px;
+  border-radius: 5px;
+}
+
+.stack1 {
+  width: 50px;
+  background: white;
+  height: 10px;
+}
+
+.stack2 {
+  width: 100px;
+  background: white;
+  height: 10px;
+}
+
+.stack3 {
+  width: 150px;
+  background: white;
+  height: 10px;
+}
+
+#tower1 {
+  background: rgb(91, 91, 91);
+  
+  width: 200px;
+}
+#tower2 {
+  background: rgb(91, 91, 91);
+ 
+  width: 200px;
+}
+#tower3 {
+  background: rgb(91, 91, 91);
+
+  width: 200px;
+}
